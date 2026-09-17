@@ -12,8 +12,18 @@ const io = new Server(server, {
   }
 })
 
+let currentCounter = 0
+
 io.on('connection', (socket) => {
   console.log('Cliente conectado: '+socket.id)
+
+  socket.emit('receive_input', currentCounter)
+
+  socket.on('send_input', (newValue) => {
+    currentCounter = newValue
+
+    socket.broadcast.emit('receive_input', currentCounter)
+  })
 
   socket.on('disconnect', () => {
     console.log('Cliente desconectado: '+socket.id)
