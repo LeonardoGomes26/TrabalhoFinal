@@ -3,3 +3,23 @@ body{
   color: white;
   text-align: center;
 }
+button{
+  padding: 4px 8px;
+  margin-left: 5px;
+}
+.menuWindow{
+  position: absolute;
+  top: 7%;
+  left: 3%;
+  float: left;
+  background-color: beige;
+  color: black;
+  width: 25%;
+  height: 25%;
+  text-align: justify;
+  padding: 10px;
+  border-radius: 15px;
+}
+p{
+  margin: 0;
+}
