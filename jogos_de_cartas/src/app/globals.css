@@ -3,23 +3,146 @@ body{
   color: white;
   text-align: center;
 }
-button{
-  padding: 4px 8px;
-  margin-left: 5px;
+.main_div{
+  padding: 40px;
+  font-family: sans-serif;
+  max-width: 400px;
+  margin: auto;
 }
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+label{
+  display: block;
+  margin-bottom: 5px;
+}
+input{
+  width: 100%;
+  padding: 8px;
+}
+.error_message{
+  color: red;
+  margin: 0;
+}
+.button_submit{
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.paiGame{
+  padding: 30px;
+  font-family: 'sans-serif';
+}
+.titulo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttonSair{
+  padding: 8px 16px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.divGame{
+  margin-top: 20px;
+  border: 2px solid #0070f3;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.inputPrincipal{
+  width: 60px;
+  text-align: center;
+}
+.buttonMais{
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.buttonMenos{
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.success_message{
+  color: green;
+  margin: 0;
+}
+.button_change{
+  margin-top: 20px;
+  text-align: center;
+}
+.button_change_page{
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+ul{
+  list-style: none;
+  padding: 0;
+}
+.paiGame{
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+.titulo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notify{
+  padding: 10px;
+  background-color: white;
+  color: #856404;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+.contador{
+  font-size: 64px;
+  margin: 10px 0;
+  color: #0070f3;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+.espera{
+  color: gray;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.playersList{
+  padding: 15px;
+}
+.suaVez{
+  font-weight: bold;
+}
+
 .menuWindow{
   position: absolute;
   top: 7%;
-  left: 3%;
+  left: 1%;
   float: left;
-  background-color: beige;
-  color: black;
-  width: 25%;
-  height: 25%;
-  text-align: justify;
+  width: 20%;
+  height: 20%;
   padding: 10px;
-  border-radius: 15px;
-}
-p{
-  margin: 0;
+  background-color: white;
+  color: #856404;
+  border: 2px solid #856404;
+  border-radius: 4px;
+  margin-bottom: 15px;
 }
