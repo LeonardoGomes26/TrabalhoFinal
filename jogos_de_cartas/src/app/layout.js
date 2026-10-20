@@ -1,4 +1,11 @@
+import localFont from 'next/font/local'
 import "./globals.css";
+
+const minhaFonte = localFont({
+  src: './fonts/Poppins-Bold.ttf',
+  variable: '--font-custom',
+  display: 'swap',
+})
 
 export const metadata = {
   title: "Jogos de Cartas",
@@ -7,8 +14,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
-      <body>{children}</body>
+    <html lang='pt-BR' className={minhaFonte.variable}>
+      <body style={{}}>{children}</body>
     </html>
   );
 }

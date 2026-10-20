@@ -75,7 +75,7 @@ export default function Home() {
       else{
         localStorage.setItem('playerId', data.user.id)
         localStorage.setItem('username', data.user.username)
-        router.push('/game')
+        router.push('/rooms')
       }
     } catch(err){
       console.log('Erro na conexão: ', err)
@@ -84,33 +84,35 @@ export default function Home() {
   }
   
   return (
-    <div className="main_div">
-      <h1>{isRegister ? 'Criar Conta' : 'Entrar no Jogo'}</h1>
+    <div className="background_div">
+      <div className="main_div">
+        <h1 className="titulo_login">{isRegister ? 'Criar Conta' : 'Entrar no Jogo'}</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Usuário:</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
-        </div>
+        <form onSubmit={handleSubmit} noValidate>
+          <div>
+            <label className="labels-login">Usuário:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+          </div>
 
-        <div>
-          <label>Senha:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-        </div>
+          <div>
+            <label className="labels-login">Senha:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          </div>
 
-        {error && <p className="error_message">{error}</p>}
-        {success && <p className="success_message">{success}</p>}
+          {error && <p className="error_message">{error}</p>}
+          {success && <p className="success_message">{success}</p>}
 
-        <button type="submit" className="button_submit">{isRegister ? 'Cadastrar' : 'Entrar'}</button>
+          <button type="submit" className="button_submit">{isRegister ? <label className="labels-login tiraMargin">Cadastrar</label> : <label className="labels-login tiraMargin">Entrar</label>}</button>
 
-        <div className="button_change">
-          <button type="buttton" className="button_change_page" onClick={() => {
-            setIsRegister(!isRegister)
-            setError('')
-            setSuccess('')
-          }}>{isRegister ? 'Já tem uma conta? Faça Login' : 'Não tem conta? Cadastre-se'}</button>
-        </div>
-      </form>
+          <div className="button_change">
+            <button type="buttton" className="button_change_page" onClick={() => {
+              setIsRegister(!isRegister)
+              setError('')
+              setSuccess('')
+            }}>{isRegister ? <label className="labels-login tiraMargin">Já tem uma conta? Faça Login</label> : <label className="labels-login tiraMargin">Não tem conta? Cadastre-se</label>}</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

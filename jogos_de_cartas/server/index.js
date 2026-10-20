@@ -24,38 +24,42 @@ app.use(express.json())
 
 const pendingDisconnects = new Map()
 
-async function getGameStateFromDB(){
-  const playerRes = await db.query('SELECT user_id, username, socket_id FROM room_players ORDER BY id ASC')
+async function getGameStateFromDB(roomId){
+  const playerRes = await db.query('SELECT user_id, username, socket_id, is_ready FROM room_players WHERE room_id = $1 ORDER BY id ASC', [roomId])
 
-  const stateRes = await db.query('SELECT counter, current_turn_user_id FROM game_state WHERE id = 1')
+  const stateRes = await db.query('SELECT counter, status, current_turn_user_id FROM game_state WHERE room_id = $1', [roomId])
 
   const rawCounter = stateRes.rows[0]?.counter
 
   return{
+    roomId: Number(roomId),
     counter: rawCounter !== undefined && rawCounter !== null ? Number(rawCounter) : 0,
+    status: stateRes.rows[0]?.status || 'WAITING',
     players: playerRes.rows,
-    currentTurnUserId: stateRes.rows[0]?.current_turn_user_id ? Number(stateRes.rows[0]?.current_turn_user_id) : null
+    currentTurnUserId: stateRes.rows[0]?.current_turn_user_id ? Number(stateRes.rows[0].current_turn_user_id) : null
   }
 }
 
-async function rotateTurnInDB(){
-  const playerRes = await db.query('SELECT user_id FROM room_players ORDER BY id ASC')
+async function rotateTurnInDB(roomId){
+  const playerRes = await db.query('SELECT user_id FROM room_players WHERE room_id = $1 ORDER BY id ASC', [roomId])
   const players = playerRes.rows
 
   if(players.length === 0){
-    await db.query('UPDATE game_state SET current_turn_user_id = NULL WHERE id = 1')
+    await db.query('UPDATE game_state SET current_turn_user_id = NULL WHERE room_id = $1', [roomId])
     return null
   }
 
-  const stateRes = await db.query('SELECT current_turn_user_id FROM game_state WHERE id = 1')
+  const stateRes = await db.query('SELECT current_turn_user_id FROM game_state WHERE room_id = $1', [roomId])
   const currentTurnUserId = stateRes.rows[0]?.current_turn_user_id
 
-  const currentTurnIndex = players.findIndex(p => Number(p.user_id) === Number(currentTurnUserId))
-  const nextIndex = (currentTurnIndex + 1) % players.length
+  const currentIndex = players.findIndex(p => Number(p.user_id) === Number(currentTurnUserId))
+  const nextIndex = (currentIndex === -1 || currentIndex + 1 >= players.length) ? 0 : currentIndex + 1
   const nextUserId = players[nextIndex].user_id
 
-  await db.query('UPDATE game_state SET current_turn_user_id = $1 WHERE id = 1', [nextUserId])
+  await db.query('UPDATE game_state SET current_turn_user_id = $1 WHERE room_id = $2', [nextUserId, roomId])
   return nextUserId
+  //PAREI AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+  //PRÓXIMA FUNÇÃO: checkIfAllReadyAndStart(roomId)
 }
 
 app.get('/api/ping', (req, res) => {
@@ -222,7 +226,7 @@ io.on('connection', (socket) => {
         pendingDisconnects.delete(userId)
         console.log(`Tolerância de conexão expirou para o usuário ${userId}. Removendo o jogador da partida...`)
         await handlePlayerLeave(userId)
-      }, 1500)
+      }, 2000)
 
       pendingDisconnects.set(userId, timer)
     } catch(err){
