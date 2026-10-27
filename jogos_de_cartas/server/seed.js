@@ -42,7 +42,6 @@ async function runSeed(){
                 status VARCHAR(20) NOT NULL DEFAULT 'WAITING',
                 current_turn_user_id INT REFERENCES users(id) ON DELETE SET NULL
             );
-            INSERT INTO game_state (id, counter, current_turn_user_id) VALUES (1, 0, NULL);
 
             CREATE TABLE room_players (
                 id SERIAL PRIMARY KEY,
@@ -55,12 +54,12 @@ async function runSeed(){
             );
         `)
 
-        const defaultRoom = await db.query(`INSERT INTO rooms (name) VALUES ('Sala Principal') RETURNING id`)
-        const roomId = defaultRoom.rows[0].id
+        const defaultRoom = await db.query(`INSERT INTO rooms (name) VALUES ('Sala 1') RETURNING id`);
+        const roomId = defaultRoom.rows[0].id;
 
-        await db.query(`INSERT INTO game_state (room_id, counter, status, current_turn_user_id) VALUES ($1, 0, 'WAITING', NULL)`, [roomId])
+        await db.query(`INSERT INTO game_state (room_id, counter, status, current_turn_user_id) VALUES ($1, 0, 'WAITING', NULL)`, [roomId]);
             
-        console.log('[SEEDS] Banco de dados resetado com sucesso!')
+        console.log('[SEEDS] Banco de dados resetado e Sala 1 criada!')
     } catch(err){
         console.error('[SEEDS] Erro ao resetar o banco:', err.message)
     } finally{

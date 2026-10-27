@@ -37,7 +37,6 @@ html,body{
 .titulo_login{
   margin-bottom: 20px;
   font-size: 350%;
-
 }
 .labels-login{
   font-size: 130%;
@@ -71,6 +70,8 @@ input{
 }
 .paiGame{
   padding: 30px;
+  max-width: 600px;
+  margin: auto;
 }
 .titulo{
   display: flex;
@@ -185,4 +186,70 @@ ul{
   border: 2px solid #856404;
   border-radius: 4px;
   margin-bottom: 15px;
+}
+.div_main_rooms{
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+.rooms_top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.button_logout_rooms{
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.error_rooms_message{
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+.form_rooms{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.input_rooms{
+  flex: 1;
+  padding: 8px;
+}
+.button_submit_rooms{
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.rooms_list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.alert_create_room{
+  color: grey;
+}
+.internal_room{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.number_of_players{
+  font-size: 14px;
+  margin-top: 4px;
+}
+.waiting_rooms{
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+.button_enter_rooms{
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 4px;
 }
