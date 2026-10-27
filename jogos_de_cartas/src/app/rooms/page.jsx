@@ -44,7 +44,7 @@ export default function Rooms(){
     
     async function fetchRooms(){
         try{
-            const res = await fetch(`${getApiURL}/api/rooms`)
+            const res = await fetch(`${getApiURL()}/api/rooms`)
             const data = await res.json()
 
             if(res.ok)
