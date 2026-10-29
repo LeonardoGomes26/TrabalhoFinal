@@ -112,7 +112,7 @@ input{
   border-radius: 5px;
 }
 .success_message{
-  color: green;
+  color: rgb(31, 191, 255);
   margin: 0;
 }
 .button_change{
@@ -139,10 +139,11 @@ ul{
   max-width: 600px;
   margin: auto;
 }
-.titulo{
-  display: flex;
-  justify-content: space-between;
+.titulo_rooms{
   align-items: center;
+  justify-content: center;
+  display: flex;
+  
 }
 .notify{
   padding: 10px;
@@ -241,6 +242,7 @@ ul{
 .number_of_players{
   font-size: 14px;
   margin-top: 4px;
+  color: black;
 }
 .waiting_rooms{
   font-size: 12px;
@@ -252,4 +254,15 @@ ul{
   color: white;
   border: none;
   border-radius: 4px;
+}
+.room_name{
+  color: black;
+}
+.button_ready{
+  background-color: greenyellow;
+  border: none;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
 }

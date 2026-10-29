@@ -146,9 +146,9 @@ export default function GamePage(){
                 <div className="menu_lobby">
                     <h3 className="title_lobby">Lobby de Espera</h3>
                     <p className="text_lobby">
-                        A partida iniciará quando <strong>todos os johadores</strong> clicarem em "Pronto!"
+                        A partida iniciará quando <strong>todos os jogadores</strong> clicarem em "Pronto!"
                     </p>
-                    <button onClick={handleToggleReady} style={{backgroundColor: isReady ? '#5cb85c' : '#0070f3'}} className="button_ready">{isReady ? 'Você está pronto! (Clique para cancelar)' : 'Estou Pronto!'}</button>
+                    <button onClick={handleToggleReady} className="button_ready">{isReady ? 'Você está pronto! (Clique para cancelar)' : 'Estou Pronto!'}</button>
                 </div>
             )}
 
